@@ -82,7 +82,7 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
       <DateIndicator message={message} previousMessage={previousMessage} />
       <div className="flex gap-1  w-2/3 ml-auto">
         <div
-          className={`flex flex-col mr-2 z-20 max-w-fit px-2 pt-1 rounded-md shadow-md ml-auto relative ${bgClass}`}
+          className={`flex flex-col mr-0 z-20 max-w-fit px-2 pt-1 rounded-md shadow-md ml-auto relative ${bgClass}`}
         >
           <SelfMessageIndicator />
           {renderMessageContent()}
@@ -127,7 +127,7 @@ const ImageMessage = ({
   handleClick: () => void;
 }) => {
   return (
-    <div className="w-[250px] h-[250px] m-2 relative">
+    <div className="w-[150px] h-[150px] relative">
       <Image
         src={message.content}
         fill
@@ -155,7 +155,7 @@ const ImageDialog = ({
         if (!isOpen) onClose();
       }}
     >
-      <DialogContent className="min-w-[750px]">
+      <DialogContent className="min-w-[250px] mr-4">
         <DialogDescription className="relative h-[450px] flex justify-center">
           <Image
             src={src}
