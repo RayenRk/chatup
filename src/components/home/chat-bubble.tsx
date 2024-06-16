@@ -80,9 +80,9 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
   return (
     <>
       <DateIndicator message={message} previousMessage={previousMessage} />
-      <div className="flex gap-1  w-2/3 ml-auto">
+      <div className="flex gap-1 mr-4 w-2/3 ml-auto">
         <div
-          className={`flex flex-col mr-0 z-20 max-w-fit px-2 pt-1 rounded-md shadow-md ml-auto relative ${bgClass}`}
+          className={`flex flex-col z-20 px-2 pt-1 rounded-md shadow-md ml-auto relative ${bgClass}`}
         >
           <SelfMessageIndicator />
           {renderMessageContent()}
@@ -200,7 +200,7 @@ const TextMessage = ({ message }: { message: IMessage }) => {
           {message.content}
         </a>
       ) : (
-        <p className={`mr-2 text-sm font-light`}>{message.content}</p>
+        <p className={`mr-2 text-sm font-light text-balance truncate overflow-hidden max-w-[250px]`}>{message.content}</p>
       )}
     </div>
   );
