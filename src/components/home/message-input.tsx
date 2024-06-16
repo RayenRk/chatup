@@ -3,7 +3,7 @@ import { Input } from "../ui/input";
 import { use, useState } from "react";
 import { Button } from "../ui/button";
 import { api } from "../../../convex/_generated/api";
-import { useMutation, useQuery } from "convex/react";
+import { useConvexAuth, useMutation, useQuery } from "convex/react";
 import { useConversationStore } from "@/store/chat-store";
 import toast from "react-hot-toast";
 import useComponentVisible from "@/hooks/useComponentVisible";
@@ -15,7 +15,8 @@ const MessageInput = () => {
   const { selectedConversation } = useConversationStore();
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false);
-    
+  const { isLoading } = useConvexAuth();
+
   const me = useQuery(api.users.getMe);
   const sendTextMsg = useMutation(api.messages.sendTextMessage);
 
@@ -74,14 +75,20 @@ const MessageInput = () => {
               type="submit"
               size={"sm"}
               className="bg-transparent text-foreground hover:bg-transparent"
+              disabled={isLoading}
             >
-              <Send />
+              {isLoading ? (
+                <div className="w-5 h-5 border-t-2 border-b-2  rounded-full animate-spin" />
+              ) : (
+                <Send />
+              )}
             </Button>
           ) : (
             <Button
               type="submit"
               size={"sm"}
               className="bg-transparent text-foreground hover:bg-transparent"
+              disabled
             >
               <Mic />
             </Button>
