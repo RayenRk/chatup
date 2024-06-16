@@ -35,7 +35,7 @@ const UserListDialog = () => {
   const me = useQuery(api.users.getMe);
   const users = useQuery(api.users.getUsers);
 
-  const {setSelectedConversation} = useConversationStore();
+  const { setSelectedConversation } = useConversationStore();
 
   const handleCreateConversation = async () => {
     if (selectedUsers.length === 0) return;
@@ -75,11 +75,13 @@ const UserListDialog = () => {
         ? groupName
         : users?.find((user) => user._id === selectedUsers[0])?.name;
 
-        setSelectedConversation({
+      setSelectedConversation({
         _id: conversationId,
         participants: selectedUsers,
         isGroup,
-        image: isGroup ? renderedImage : users?.find((user) => user._id === selectedUsers[0])?.image,
+        image: isGroup
+          ? renderedImage
+          : users?.find((user) => user._id === selectedUsers[0])?.image,
         name: conversationName,
         admin: me?._id!,
       });
@@ -186,7 +188,17 @@ const UserListDialog = () => {
           ))}
         </div>
         <div className="flex justify-between">
-          <Button variant={"outline"}>Cancel</Button>
+          <Button variant={"outline"}
+          onClick={() => {
+            // close dialog 
+            dialogCloseRef.current?.click();
+            setSelectedUsers([]);
+            setGroupName("");
+            setSelectedImage(null);
+          }}
+          >
+            Cancel
+          </Button>
           <Button
             onClick={handleCreateConversation}
             disabled={
