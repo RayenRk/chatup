@@ -7,32 +7,45 @@ import ChatPlaceHolder from "@/components/home/chat-placeholder";
 import GroupMembersDialog from "./group-members-dialog";
 import { useConversationStore } from "@/store/chat-store";
 import { useConvexAuth } from "convex/react";
+import { UserButton } from "@clerk/nextjs";
+import ThemeSwitch from "./theme-switch";
+import UserListDialog from "./user-list-dialog";
 
 const RightPanel = () => {
-  const {selectedConversation, setSelectedConversation} = useConversationStore();
-  const {isLoading} = useConvexAuth();
-  
+  const { selectedConversation, setSelectedConversation } =
+    useConversationStore();
+  const { isAuthenticated, isLoading } = useConvexAuth();
+
   if (isLoading) return null;
   if (!selectedConversation) return <ChatPlaceHolder />;
 
-  const conversationName = selectedConversation.groupName || selectedConversation.name;
-  const conversationImage = selectedConversation.groupImage || selectedConversation.image;
+  const conversationName =
+    selectedConversation.groupName || selectedConversation.name;
+  const conversationImage =
+    selectedConversation.groupImage || selectedConversation.image;
 
   return (
-    <div className="w-3/4 flex flex-col">
+    <div className="w-full flex flex-col">
       <div className="w-full sticky top-0 z-50">
         {/* Header */}
         <div className="flex justify-between bg-gray-primary p-3">
           <div className="flex gap-3 items-center">
             <Avatar>
-              <AvatarImage src={conversationImage || "/placeholder.png"} className="object-cover" />
+              <AvatarImage
+                src={conversationImage || "/placeholder.png"}
+                className="object-cover"
+              />
               <AvatarFallback>
                 <div className="animate-pulse bg-gray-tertiary w-full h-full rounded-full" />
               </AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
               <p>{conversationName}</p>
-              {selectedConversation.isGroup && <GroupMembersDialog selectedConversation={selectedConversation} />}
+              {selectedConversation.isGroup && (
+                <GroupMembersDialog
+                  selectedConversation={selectedConversation}
+                />
+              )}
             </div>
           </div>
 
@@ -40,8 +53,10 @@ const RightPanel = () => {
             <a href="/video-call" target="_blank">
               <Video size={23} />
             </a>
-            <X size={16} className="cursor-pointer"
-            onClick={() => setSelectedConversation(null)}
+            <X
+              size={16}
+              className="cursor-pointer"
+              onClick={() => setSelectedConversation(null)}
             />
           </div>
         </div>

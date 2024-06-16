@@ -35,7 +35,7 @@ const MessageInput = () => {
   };
 
   return (
-    <div className="bg-gray-primary p-2 flex gap-4 items-center">
+    <div className="mt-3 bg-gray-primary p-2 flex gap-4 items-center">
       <div className="relative flex gap-2 ml-2">
         {/* EMOJI PICKER WILL GO HERE */}
         <div ref={ref} onClick={() => setIsComponentVisible(true)}>

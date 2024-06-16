@@ -80,9 +80,9 @@ const ChatBubble = ({ me, message, previousMessage }: ChatBubbleProps) => {
   return (
     <>
       <DateIndicator message={message} previousMessage={previousMessage} />
-      <div className="flex gap-1 w-2/3 ml-auto">
+      <div className="flex gap-1  w-2/3 ml-auto">
         <div
-          className={`flex z-20 max-w-fit px-2 pt-1 rounded-md shadow-md ml-auto relative ${bgClass}`}
+          className={`flex flex-col mr-2 z-20 max-w-fit px-2 pt-1 rounded-md shadow-md ml-auto relative ${bgClass}`}
         >
           <SelfMessageIndicator />
           {renderMessageContent()}

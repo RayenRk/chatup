@@ -42,12 +42,11 @@ const LeftPanel = () => {
   if (isLoading) return null;
 
   return (
-    <div className="w-1/4 border-gray-600 border-r">
+    <div className="lg:flex lg:flex-col md:flex md:flex-col w-1/4 border-gray-600 border-r hidden">
       <div className="sticky top-0 bg-left-panel z-10">
         {/* Header */}
         <div className="flex justify-between bg-gray-primary p-3 items-center">
           <UserButton />
-
           <div className="flex items-center gap-3">
             {isAuthenticated && <UserListDialog />}
             <ThemeSwitch />
