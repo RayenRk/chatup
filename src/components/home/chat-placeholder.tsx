@@ -13,8 +13,8 @@ const ChatPlaceHolder = () => {
   return (
     <div className="sm:w-full md:w-full bg-gray-secondary flex flex-col items-center justify-center pt-0 pb-10">
       {/* Header 1 */}
-      <div className="w-full sticky top-0 z-50">
-        <div className="flex sm:hidden md:hidden justify-between bg-gray-primary p-3 items-center border-b">
+      <div className="w-full sticky top-0 z-50 border-b-gray-500">
+        <div className="flex sm:hidden md:hidden justify-between bg-gray-primary p-3 items-center">
           <UserButton />
           <div className="flex items-center gap-3">
             {isAuthenticated && <UserListDialog />}
